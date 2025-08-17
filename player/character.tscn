@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dryy7gwpwulil"]
+[gd_scene load_steps=13 format=3 uid="uid://dryy7gwpwulil"]
 
+[ext_resource type="Script" uid="uid://dbu3tmwwfsf6b" path="res://player/character.gd" id="1_1t06j"]
 [ext_resource type="FontFile" uid="uid://ck28bichewo6q" path="res://addons/fonts/nunito/Nunito-VariableFont_wght.ttf" id="1_jq1i7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sf73v"]
@@ -36,6 +37,7 @@ size = Vector3(1, 2, 1)
 size = Vector3(1, 2, 1)
 
 [node name="Character" type="CharacterBody3D"]
+script = ExtResource("1_1t06j")
 
 [node name="PrimaryCollider" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_sf73v")
