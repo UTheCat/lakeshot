@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://dryy7gwpwulil"]
+
+[ext_resource type="FontFile" uid="uid://ck28bichewo6q" path="res://addons/fonts/nunito/Nunito-VariableFont_wght.ttf" id="1_jq1i7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sf73v"]
+size = Vector3(2, 5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sf73v"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.25098)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jq1i7"]
+material = SubResource("StandardMaterial3D_sf73v")
+size = Vector3(2, 5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1t06j"]
+size = Vector3(2, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xx22o"]
+size = Vector3(2, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jq1i7"]
+size = Vector3(2, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1t06j"]
+albedo_color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_74pxd"]
+material = SubResource("StandardMaterial3D_1t06j")
+size = Vector3(2, 2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xhlcg"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sd8wt"]
+size = Vector3(1, 2, 1)
+
+[node name="Character" type="CharacterBody3D"]
+
+[node name="PrimaryCollider" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_sf73v")
+
+[node name="Indicator" type="MeshInstance3D" parent="PrimaryCollider"]
+visible = false
+mesh = SubResource("BoxMesh_jq1i7")
+
+[node name="Head" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_1t06j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Head"]
+mesh = SubResource("BoxMesh_xx22o")
+
+[node name="Label3D" type="Label3D" parent="Head"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, -0.505)
+offset = Vector2(0, 10)
+text = ":)"
+font = ExtResource("1_jq1i7")
+font_size = 128
+
+[node name="Torso" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_jq1i7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Torso"]
+mesh = SubResource("BoxMesh_74pxd")
+
+[node name="LeftLeg" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -1.5, 0)
+shape = SubResource("BoxShape3D_xhlcg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftLeg"]
+mesh = SubResource("BoxMesh_sd8wt")
+
+[node name="RightLeg" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -1.5, 0)
+shape = SubResource("BoxShape3D_xhlcg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RightLeg"]
+mesh = SubResource("BoxMesh_sd8wt")
+
+[node name="LeftArm" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 0)
+shape = SubResource("BoxShape3D_xhlcg")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftArm"]
+mesh = SubResource("BoxMesh_sd8wt")
+
+[node name="RightArm" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 0)
+shape = SubResource("BoxShape3D_xhlcg")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RightArm"]
+mesh = SubResource("BoxMesh_sd8wt")
