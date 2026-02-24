@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://dx0npmluqx167"]
+
+[ext_resource type="Material" uid="uid://bmtoyp50ewt6w" path="res://player/torso_texture.tres" id="1_jhmwb"]
+[ext_resource type="FontFile" uid="uid://b68m6cvvsd1mh" path="res://addons/fonts/roboto_mono/RobotoMono-VariableFont_wght.ttf" id="2_foohl"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7bhqx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mx087"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nlvqv"]
+size = Vector3(2, 2, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_nlvqv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u5oda"]
+albedo_color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_a5yrm"]
+material = SubResource("StandardMaterial3D_u5oda")
+text = ":)"
+font = ExtResource("2_foohl")
+
+[node name="CharacterBody" type="Node3D" unique_id=1668591425]
+
+[node name="LeftLeg" type="Node3D" parent="." unique_id=759468517]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -1.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="LeftLeg" unique_id=1865734257]
+mesh = SubResource("CapsuleMesh_7bhqx")
+skeleton = NodePath("")
+
+[node name="RightLeg" type="Node3D" parent="." unique_id=672005942]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -1.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="RightLeg" unique_id=896100516]
+mesh = SubResource("CapsuleMesh_7bhqx")
+skeleton = NodePath("")
+
+[node name="LeftArm" type="Node3D" parent="." unique_id=1768022765]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="LeftArm" unique_id=2104917019]
+mesh = SubResource("CapsuleMesh_mx087")
+skeleton = NodePath("")
+
+[node name="RightArm" type="Node3D" parent="." unique_id=1066459975]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="RightArm" unique_id=389273878]
+mesh = SubResource("CapsuleMesh_mx087")
+skeleton = NodePath("")
+
+[node name="Torso" type="Node3D" parent="." unique_id=2028252916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Torso" unique_id=1627921928]
+material_override = ExtResource("1_jhmwb")
+mesh = SubResource("BoxMesh_nlvqv")
+skeleton = NodePath("")
+
+[node name="Head" type="Node3D" parent="." unique_id=2110515792]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Head" unique_id=2131502133]
+mesh = SubResource("SphereMesh_nlvqv")
+skeleton = NodePath("../../..")
+
+[node name="Face" type="Node3D" parent="." unique_id=769100129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.5)
+
+[node name="RobotoMonoDebugFace" type="MeshInstance3D" parent="Face" unique_id=1807641811]
+transform = Transform3D(-1.31134e-07, 3, 0, -3, -1.31134e-07, 0, 0, 0, 3, 0.046303272, 0, 0.059532642)
+mesh = SubResource("TextMesh_a5yrm")
+skeleton = NodePath("../../..")
