@@ -31,7 +31,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
 shape = SubResource("BoxShape3D_jq1i7")
 
 [node name="Mesh" type="MeshInstance3D" parent="RootCollider" unique_id=1638245551]
-visible = false
 material_override = SubResource("StandardMaterial3D_0s6rg")
 mesh = SubResource("BoxMesh_rl4hs")
 skeleton = NodePath("../..")

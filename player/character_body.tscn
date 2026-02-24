@@ -69,6 +69,6 @@ skeleton = NodePath("../../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.5)
 
 [node name="RobotoMonoDebugFace" type="MeshInstance3D" parent="Face" unique_id=1807641811]
-transform = Transform3D(-1.31134e-07, 3, 0, -3, -1.31134e-07, 0, 0, 0, 3, 0.046303272, 0, 0.059532642)
+transform = Transform3D(-1.31134e-07, 3, 0, -3, -1.31134e-07, 0, 0, 0, 3, 0.05, 0, 0.06)
 mesh = SubResource("TextMesh_a5yrm")
 skeleton = NodePath("../../..")
