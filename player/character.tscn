@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bhraj4ym0cswa"]
 
+[ext_resource type="Script" uid="uid://v5023grv3mxo" path="res://player/character.gd" id="1_1t06j"]
 [ext_resource type="PackedScene" uid="uid://dx0npmluqx167" path="res://player/character_body.tscn" id="2_3ohbj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jq1i7"]
@@ -21,6 +22,7 @@ collision_mask = 5
 floor_constant_speed = true
 floor_max_angle = 1.309
 platform_floor_layers = 4294967291
+script = ExtResource("1_1t06j")
 metadata/custom_overall_bounding_box = AABB(-0.5, -1, -0.25, 1, 2, 0.5)
 
 [node name="RootCollider" type="CollisionShape3D" parent="." unique_id=1856050977]
