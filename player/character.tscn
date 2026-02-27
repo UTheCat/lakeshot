@@ -3,17 +3,17 @@
 [ext_resource type="PackedScene" uid="uid://dx0npmluqx167" path="res://player/character_body.tscn" id="2_3ohbj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jq1i7"]
-size = Vector3(2, 3.9, 1)
+size = Vector3(2, 2.9, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0s6rg"]
 transparency = 1
 albedo_color = Color(0.631373, 0.631373, 0.631373, 0.25098)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rl4hs"]
-size = Vector3(2, 3.9, 1)
+size = Vector3(2, 2.9, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1t06j"]
-size = Vector3(2, 1.1, 1)
+size = Vector3(2, 2.1, 1)
 
 [node name="Character" type="CharacterBody3D" unique_id=500836021]
 collision_layer = 5
@@ -23,11 +23,8 @@ floor_max_angle = 1.309
 platform_floor_layers = 4294967291
 metadata/custom_overall_bounding_box = AABB(-0.5, -1, -0.25, 1, 2, 0.5)
 
-[node name="_InteractiveBoundingBox" type="Node" parent="." unique_id=1651037246]
-metadata/type = "OverallBoundingBoxObject"
-
 [node name="RootCollider" type="CollisionShape3D" parent="." unique_id=1856050977]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
 shape = SubResource("BoxShape3D_jq1i7")
 
 [node name="Mesh" type="MeshInstance3D" parent="RootCollider" unique_id=1638245551]
@@ -38,8 +35,8 @@ skeleton = NodePath("../..")
 [node name="CharacterBody" parent="." unique_id=124286832 instance=ExtResource("2_3ohbj")]
 
 [node name="CameraFocus" type="Node3D" parent="." unique_id=1164702702]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="StepClimbCast" type="ShapeCast3D" parent="." unique_id=681982785]
 shape = SubResource("BoxShape3D_1t06j")
-target_position = Vector3(0, -1.95, 0)
+target_position = Vector3(0, -1.45, 0)
