@@ -32,10 +32,10 @@ var try_jump: bool = false
 ## Whether or not the character wants to climb something
 var try_climb: bool = false
 
-# Private for now since we plan to add acceleration that changes based on
-# the surface material that the character is walking on.
-const _ACCELERATION = 150
-const _AIR_ACCELERATION = 100
+# Private for now to support future implementation of different acceleration values based on
+# surface material
+const _ACCELERATION = 600
+const _AIR_ACCELERATION = 400
 
 ## Get the character's desired move direction in the XZ plane for the given angle
 func get_move_direction(angle: float) -> Vector3:
