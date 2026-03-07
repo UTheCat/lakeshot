@@ -21,6 +21,10 @@ run/main_scene="uid://doa4p4a37ag0y"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/vsync/vsync_mode=0
+
 [filesystem]
 
 import/blender/enabled=false
