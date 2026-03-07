@@ -32,6 +32,15 @@ var try_jump: bool = false
 ## Whether or not the character wants to climb something
 var try_climb: bool = false
 
+## If set to true, the character will instantly face the direction of the camera's yaw
+## every frame.
+## Otherwise, the character's yaw will try to gradually turn to the character's desired move direction
+var fast_turn_enabled: bool = false
+
+## If non-null, this Camera3D's current view direction will be used
+## as the character's desired move direction
+var direction_camera: Camera3D = null
+
 var _climb_hitbox: Area3D = null
 var _climb_direction_cast: ShapeCast3D = null
 var _step_climb_cast: ShapeCast3D = null
@@ -66,8 +75,8 @@ func _physics_process(delta: float) -> void:
 	# How much the character's velocity will change this physics frame
 	#var velocity_delta = Vector3.ZERO
 	
-	var is_trying_to_move = is_trying_to_move();
-	var move_direction = get_move_direction(0)
+	var is_trying_to_move = is_trying_to_move()
+	var move_direction = get_move_direction(direction_camera.yaw if direction_camera != null else 0)
 	var accel = _ACCELERATION if c_is_on_floor else _AIR_ACCELERATION
 	var next_xz_velocity = _approach_xz_velocity(Vector2(last_xz_velocity.x, last_xz_velocity.z), Vector2(move_direction.x, move_direction.z), accel, delta)
 	var next_vertical_velocity = last_vertical_velocity
