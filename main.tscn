@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://doa4p4a37ag0y"]
 
-[ext_resource type="Script" uid="uid://drgutvpkju71" path="res://src/core/camera/base_camera.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://di1nvtujqhkhv" path="res://src/app/camera/user_input_camera.gd" id="1_ig7tw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
