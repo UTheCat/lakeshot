@@ -45,7 +45,7 @@ var _climb_hitbox: Area3D = null
 var _climb_direction_cast: ShapeCast3D = null
 var _step_climb_cast: ShapeCast3D = null
 
-var _last_xz_velocity: Vector3 = Vector3.ZERO
+var _last_xz_velocity: Vector2 = Vector2.ZERO
 
 # The "vertical" velocity based on the gravity vector
 # Needs to be stored separately from other velocities because
@@ -78,7 +78,7 @@ func _physics_process(delta: float) -> void:
 	var is_trying_to_move = is_trying_to_move()
 	var move_direction = get_move_direction(direction_camera.yaw if direction_camera != null else 0)
 	var accel = _ACCELERATION if c_is_on_floor else _AIR_ACCELERATION
-	var next_xz_velocity = _approach_xz_velocity(Vector2(last_xz_velocity.x, last_xz_velocity.z), Vector2(move_direction.x, move_direction.z), accel, delta)
+	var next_xz_velocity = _approach_xz_velocity(last_xz_velocity, Vector2(move_direction.x, move_direction.z), accel, delta)
 	var next_vertical_velocity = last_vertical_velocity
 	
 	if try_jump:
@@ -101,7 +101,7 @@ func _physics_process(delta: float) -> void:
 	_last_xz_velocity = next_xz_velocity
 	_last_vertical_velocity = next_vertical_velocity
 	
-	velocity = next_xz_velocity + next_vertical_velocity
+	velocity = Vector3(next_xz_velocity.x, 0, next_xz_velocity.y) + next_vertical_velocity
 	
 func _approach_xz_velocity(current_vel: Vector2, goal_vel: Vector2, accel: float, physics_delta_time: float):
 	var direction = (goal_vel - current_vel).normalized()

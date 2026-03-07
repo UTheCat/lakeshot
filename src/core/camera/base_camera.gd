@@ -37,11 +37,10 @@ var zoom_out_distance: float:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	global_rotation.x = clamp(global_rotation.x, min_pitch, max_pitch)
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	position = get_desired_position()
 	
 func _get_focus_point_position(): return Vector3.ZERO if focus_point == null else focus_point.global_position
 
