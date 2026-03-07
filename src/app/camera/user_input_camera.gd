@@ -6,7 +6,7 @@ const INPUT_ROTATE = "camera_rotate";
 const INPUT_ZOOM_IN = "camera_zoom_in"
 const INPUT_ZOOM_OUT = "camera_zoom_out"
 
-const _BASE_ROTATION_SPEED = 4
+const _BASE_ROTATION_SPEED = 0.4
 const _ROTATION_SPEED_MULTIPLIER_MOUSE = 0.02
 
 var _is_turning_camera = false

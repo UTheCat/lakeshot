@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://doa4p4a37ag0y"]
 
+[ext_resource type="Script" uid="uid://djg6cmsgukruu" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://di1nvtujqhkhv" path="res://src/app/camera/user_input_camera.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://ykkjpsnf87oh" path="res://addons/kenney_prototype_textures/light/texture_11.png" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bhraj4ym0cswa" path="res://player/character.tscn" id="3_h2yge"]
@@ -27,6 +28,7 @@ material = SubResource("StandardMaterial3D_h2yge")
 size = Vector3(100, 1, 100)
 
 [node name="Main" type="Node3D" unique_id=427069998]
+script = ExtResource("1_1bvp3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1625444540]
 environment = SubResource("Environment_0xm2m")
