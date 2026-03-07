@@ -48,7 +48,7 @@ func _get_focus_point_position(): return Vector3.ZERO if focus_point == null els
 ## Returns the "target" position of the camera that's used when there are no obstructions between
 ## the camera's focus point and the target position of the camera
 func get_desired_position():
-	var cam_pos = global_position
+	var cam_pos = _get_focus_point_position()
 	var c_zoom_out_dist = zoom_out_distance
 	if c_zoom_out_dist == 0: return cam_pos
 	
