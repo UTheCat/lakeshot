@@ -1,3 +1,4 @@
+## Subclass of BaseCamera that allows the camera to respond to user input
 extends BaseCamera
 class_name UserInputCamera
 
