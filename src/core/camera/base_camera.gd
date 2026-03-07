@@ -55,7 +55,7 @@ func get_desired_position():
 	var pitch = -cam_rot.x
 	var transform_horizontal_dist = c_zoom_out_dist * cos(pitch)
 	var transform_height = c_zoom_out_dist * sin(pitch)
-	cam_pos += Vector3(right_offset, transform_height, transform_horizontal_dist)
+	cam_pos += Vector3(right_offset, transform_height, transform_horizontal_dist).rotated(Vector3.UP, cam_rot.y)
 	
 	return cam_pos
 
