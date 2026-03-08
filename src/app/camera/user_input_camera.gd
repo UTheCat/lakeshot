@@ -6,10 +6,15 @@ const INPUT_ROTATE = "camera_rotate";
 const INPUT_ZOOM_IN = "camera_zoom_in"
 const INPUT_ZOOM_OUT = "camera_zoom_out"
 
-const _BASE_ROTATION_SPEED = 0.4
-const _ROTATION_SPEED_MULTIPLIER_MOUSE = 0.02
+const _BASE_ROTATION_SPEED = 1
+const _ROTATION_SPEED_MULTIPLIER_MOUSE = 0.01
+
+const _ZOOM_TWEEN_DUR = 0.2
 
 var _is_turning_camera = false
+var _is_adjusting_zoom = false
+var _current_zoom_out_dist_tween: Tween = null
+var _target_zoom_out_dist = zoom_out_distance
 
 ## Whether or not the camera is currently being turned
 var is_turning_camera: bool:
@@ -52,6 +57,8 @@ func _input(event: InputEvent) -> void:
 		var rotation_overlay = rotation_invisible_overlay
 		if rotation_overlay != null and rotation_overlay.visible:
 			_mouse_turn_camera(event as InputEventMouseMotion)
+	
+	#_adjust_zoom_on_input(event)
 
 func _unhandled_input(event: InputEvent) -> void:
 	var rotation_overlay = rotation_invisible_overlay
@@ -76,11 +83,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_can_rotate_in_underscore_input = true
 			_mouse_turn_camera(event as InputEventMouseMotion)
 	
-	# Handle input for adjusting the camera's zoom
-	if Input.is_action_pressed(INPUT_ZOOM_IN):
-		zoom_out_distance -= zoom_adjustment
-	elif Input.is_action_pressed(INPUT_ZOOM_OUT):
-		zoom_out_distance += zoom_adjustment
+	_adjust_zoom_on_input(event)
 
 func _free_rotation_input_pressed():
 	return Input.is_action_pressed(INPUT_ROTATE)
@@ -91,6 +94,40 @@ func _mouse_turn_camera(mouse_event):
 	
 	var old_global_rot = global_rotation
 	set_rotation_clamped(Vector3(old_global_rot.x - mouse_movement.y * rotation_factor, old_global_rot.y - mouse_movement.x * rotation_factor, old_global_rot.z))
+
+func _tween_zoom_out_dist(new_dist: float):
+	if _current_zoom_out_dist_tween != null:
+		_current_zoom_out_dist_tween.pause()
+		_current_zoom_out_dist_tween = null
+		
+	_target_zoom_out_dist = new_dist
+	
+	if _ZOOM_TWEEN_DUR == 0:
+		zoom_out_distance = new_dist
+		return
+	
+	var t = create_tween()
+	_current_zoom_out_dist_tween = t
+	t.stop()
+	t.set_ease(Tween.EASE_OUT)
+	t.set_trans(Tween.TRANS_QUART)
+	t.tween_property(self, "zoom_out_distance", new_dist, _ZOOM_TWEEN_DUR)
+	
+	# To prevent race conditions
+	if t == _current_zoom_out_dist_tween: t.play()
+
+func _adjust_zoom_on_input(_event: InputEvent):
+	if (_is_adjusting_zoom): return
+	_is_adjusting_zoom = true
+	
+	# We check for INPUT_ZOOM_OUT first to better support zooming into first person
+	# and then zooming back out into third person immediately after
+	if Input.is_action_pressed(INPUT_ZOOM_OUT):
+		_tween_zoom_out_dist(_target_zoom_out_dist + zoom_adjustment)
+	elif Input.is_action_pressed(INPUT_ZOOM_IN):
+		_tween_zoom_out_dist(_target_zoom_out_dist - zoom_adjustment)
+	
+	_is_adjusting_zoom = false
 
 ## Emitted when the value of is_turning_camera changes
 signal is_turning_camera_toggled
