@@ -102,6 +102,7 @@ func _physics_process(delta: float) -> void:
 	_last_vertical_velocity = next_vertical_velocity
 	
 	velocity = Vector3(next_xz_velocity.x, 0, next_xz_velocity.y) + next_vertical_velocity
+	move_and_slide()
 	
 func _approach_xz_velocity(current_vel: Vector2, goal_vel: Vector2, accel: float, physics_delta_time: float):
 	var direction = (goal_vel - current_vel).normalized()
