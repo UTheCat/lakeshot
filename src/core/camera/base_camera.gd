@@ -10,13 +10,25 @@ var min_pitch: float = -0.5 * PI
 @export
 var max_pitch: float = 0.5 * PI
 
+var _min_zoom_out_distance = 0
+
 ## The smallest allowable distance (in meters) from the point that the camera is focusing on
 @export
-var min_zoom_out_distance: float = 0;
+var min_zoom_out_distance: float:
+	get: return _min_zoom_out_distance
+	set(value):
+		_min_zoom_out_distance = value
+		_clamp_zoom_out_distance()
+
+var _max_zoom_out_distance = 15
 
 ## The largest allowable distance (in meters) from the point that the camera is focusing on
 @export
-var max_zoom_out_distance: float = 15;
+var max_zoom_out_distance: float:
+	get: return _max_zoom_out_distance
+	set(value):
+		_max_zoom_out_distance = value
+		_clamp_zoom_out_distance()
 
 @export
 ## The point that the camera should focus on. It's recommended to set this to a Node3D.
@@ -30,17 +42,24 @@ var _zoom_out_distance: float = min_zoom_out_distance
 ## How far zoomed out (in meters) that the camera is from the point that the camera is focusing on
 var zoom_out_distance: float:
 	get: return _zoom_out_distance
-	set(value):
-		_zoom_out_distance = value
-		zoom_out_distance_set.emit(value)
+	set(value): _set_zoom_out_distance(value)
+
+func _clamp_zoom_out_distance(): _set_zoom_out_distance(_zoom_out_distance)
+
+func _set_zoom_out_distance(value):
+	_zoom_out_distance = clamp(value, min_zoom_out_distance, max_zoom_out_distance)
+	zoom_out_distance_set.emit(value)
+
+## (Forcefully) updates the camera's position
+func update_position():
+	global_position = get_desired_position()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	global_rotation.x = clamp(global_rotation.x, min_pitch, max_pitch)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	position = get_desired_position()
+func _process(delta: float) -> void: update_position()
 	
 func _get_focus_point_position(): return Vector3.ZERO if focus_point == null else focus_point.global_position
 
