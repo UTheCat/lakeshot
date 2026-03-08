@@ -50,6 +50,7 @@ func get_desired_position():
 	var cam_pos = _get_focus_point_position()
 	var c_zoom_out_dist = zoom_out_distance
 	if c_zoom_out_dist == 0: return cam_pos
+	c_zoom_out_dist = clamp(c_zoom_out_dist, min_zoom_out_distance, max_zoom_out_distance)
 	
 	var cam_rot = global_rotation
 	var pitch = -cam_rot.x
